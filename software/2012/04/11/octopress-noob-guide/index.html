@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Руководство по установке Octopress для чайников - EVE Online Blog</title>
+  <meta name="author" content="Marko">
+
+  
+  <meta name="description" content="Пошаговая установка Octopress на windows">
+  <meta name="keywords" content="Octopress, установка Octopress, развертывание Octopress, Octopress для чайников, блог Octopress установка, установка, установка Octopress windows">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://evestuff.github.com/evestuff/software/2012/04/11/octopress-noob-guide">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="EVE Online Blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">EVE Online Blog</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:evestuff.github.com/evestuff" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul role=main-navigation>
+  <li><a href="/">Главная</a></li>
+  <li><a href="/blog/archives">Все посты</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Руководство по установке Octopress для чайников</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-11T22:48:00+04:00" pubdate data-updated="true">Apr 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Руководство по установке и настройке блог-движка Octopress на Windows написанное чайником на своем горьком опыте.</p>
+
+<p>Итак, вы никогда не вели блог и решили завести такой же красивый и минималистичный, как у меня. Для того вам придется поработать с командной строкой и почитать мануалы на английском. А первые шаги я вам опишу.</p>
+
+<!-- more -->
+
+
+<h2>Подготовка</h2>
+
+<ol>
+<li>Сначала вам понадобится <code>Git</code>. Это такая система управления разными версиями файлов при совместном программировании.<br/>
+<a href="http://git-scm.com/">Установить Git</a><br/>
+Тут все просто, скачиваете с сайта, ставите. Я выбрал портативную версию.</li>
+<li>Далее необходима среда программирования <code>Ruby</code>, потому что Octopress написан на этом языке программирования. <a href="http://octopress.org/docs/setup">Сказано</a> что нам нужен <code>Ruby 1.9.2</code><br/>
+<a href="http://rubyinstaller.org/downloads/">Установить Ruby 1.9.2</a><br/>
+Скачиваете, ставите.</li>
+<li>Видимо, у программистов много версий <code>Ruby</code>, поэтому нужно отдельно выбрать, какую использовать. Для этого нужен выбиратель. Я использовал <a href="http://github.com/scottmuc/yari">Yari</a>. В нем ничего лишнего.<br/>
+Скачать <code>Yari</code>.<br/>
+Для того заходите в папку, где установлен <code>Git</code> и запускаете <code>git-cmd.bat</code>. Вводите эти команды одну за другой:</li>
+</ol>
+
+
+<p>.</p>
+
+<pre><code>cd %USERPROFILE%
+git clone git://github.com/scottmuc/yari.git .yari
+setx PATH %USERPROFILE%\.yari\bin
+</code></pre>
+
+<p>Перезапускаем консоль <code>git-cmd.bat</code>.</p>
+
+<pre><code>yari 1.9.2
+ruby -v
+</code></pre>
+
+<p>Если в ответ на последнюю команду вам пришло это:</p>
+
+<pre><code>ruby 1.9.2p290 (2011-07-09) [i386-mingw32]
+</code></pre>
+
+<p>значит все в порядке, вы готовы устанавливать Octopress.</p>
+
+<h2>Установка</h2>
+
+<p>Запускаете <code>git-cmd.bat</code><br/>
+Скачиваете Octopress.</p>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+</code></pre>
+
+<p>Переходите в папку с ним.</p>
+
+<pre><code>cd octopress
+</code></pre>
+
+<p>В дальнейшем все дела вы будете вести в этой папке. Если вы перезапустили <code>git-cmd.bat</code>, то для продолжения работы с Octopress вы сначала должны будете перейти в его папку.<br/>
+Ставите зависимости.</p>
+
+<pre><code>gem install bundler
+bundle install
+</code></pre>
+
+<p>Внимательно читайте ответные сообщения, если будут ошибки - дальше дело не пойдет, что бы вы ни писали.<br/>
+Ставим базовую тему оформления</p>
+
+<pre><code>rake install
+</code></pre>
+
+<p>Создаем тестовую страницу.</p>
+
+<pre><code>rake new_post["title"]
+</code></pre>
+
+<p>Генерируем наш сайт.</p>
+
+<pre><code>rake generate
+</code></pre>
+
+<p>Запускаем на локальном компьютере.</p>
+
+<pre><code>rake preview
+</code></pre>
+
+<p>Заходим в браузер и вводим в адресной строке</p>
+
+<pre><code>localhost:4000
+</code></pre>
+
+<p>Если вы все сделали правильно - вы увидите свой будущий блог с 1 сообщением.</p>
+
+<h2>Кириллица</h2>
+
+<p>Все русские буквы, которые вы будете вводить в файл <code>_config.yml</code>,<code>.html</code>-шаблоны и <code>markdown</code>-исходники ваших будущих постов должны быть в кодировке <code>UTF-8 без BOM</code>. Скажу сразу, обычный блокнот для этого не подойдет - его UTF-8 <em>c</em> ВОМ по умолчанию. Я пользуюсь <code>Notepad++</code>.</p>
+
+<p>Чтобы движок по командам <code>rake preview</code> и <code>rake generate</code> сгенерировал вам ваши русскоязычные страницы, вы должны сразу после запуска
+<code>git-cmd.bat</code> и перерехода <code>cd octopress</code> ввести следующую команду</p>
+
+<pre><code>chcp 65001
+</code></pre>
+
+<p>Без нее у вас с кириллицей ничего не заработает.</p>
+
+<h2>Кастомизация и перевод</h2>
+
+<p>Настройка и общее использование блога достаточно <a href="http://octopress.org/docs/">подробно описаны на его сайте</a>. Я обращу ваше внимание на основные моменты:</p>
+
+<h5>Настройка своей темы методом тыка</h5>
+
+<p>Запускаете <code>rake preview</code>, и все изменения в папках ниже сразу отразятся на вашей странице в локалхосте. Сделали бэкап оригинала, изменили файл в папке, сохранили. В консоли появилось сообщение:</p>
+
+<pre><code>[2012-04-14 13:06:58] regeneration: 1 files changed
+</code></pre>
+
+<p>Нажали <code>F5</code> в браузере, оценили результат.</p>
+
+<ul>
+<li><strong>/octopress/source/_posts</strong><br/>
+Тут лежат исходники ваших постов. Копируйте и вставляйте, создавая новые.</li>
+<li><strong>/octopress/source/_includes</strong><br/>
+Здесь лежат шаблоны ваших HTML-страниц. Вся возможная русификация проводится здесь. Помните про кодировки!</li>
+<li><strong>/octopress/sass</strong><br/>
+Тут все что касается цветов и шрифтов вашего блога. Цвета в <code>_сolors.scss</code> и <code>_theme.scss</code>, шрифты в <code>_fonts.scss</code> и <code>_typography.scss</code>. CSS файлы организованы логично, минимального знания английского хватит, чтобы разобраться. Цвета вашего блога можно подобрать <a href="http://colorscheme.ru/">на этом сайте</a>.</li>
+</ul>
+
+
+<h5>Замена оригинальной темы своей или создание новой</h5>
+
+<ul>
+<li><strong>/octopress/.themes/classic</strong><br/>
+Заменяете оригинальные файлы в исходной теме своими из <strong>/octopress/source/</strong> и <strong>/octopress/sass/</strong>. Теперь при <code>rake install</code> будет генерироваться сайт с вашей темой, вместо классической.</li>
+<li><strong>/octopress/.themes/new_theme</strong><br/>
+Cоздаете новую папку со своей темой. Вы должны понимать что делаете, иначе не факт что ваша тема будет сьедена движком.</li>
+</ul>
+
+
+<h2>Возникли вопросы?</h2>
+
+<ul>
+<li><a href="http://octopress.org/docs">Читайте документацию</a></li>
+<li><a href="http://github.com/imathis/octopress/issues">Ищите похожую проблему</a></li>
+<li>Напишите мне: <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#114;&#101;&#97;&#x6c;&#116;&#121;&#x74;&#101;&#x6d;&#x70;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x72;&#x65;&#97;&#108;&#x74;&#x79;&#116;&#x65;&#109;&#x70;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard"> <span class="fn">Marko</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-11T22:48:00+04:00" pubdate data-updated="true">Apr 11<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/software/'>software</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://evestuff.github.com/evestuff/software/2012/04/11/octopress-noob-guide/" data-via="" data-counturl="http://evestuff.github.com/evestuff/software/2012/04/11/octopress-noob-guide/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p><center>
+  &copy; Marko - 2013 - 
+  <span class="credit"><a href="http://octopress.org">Octopress</a></span>
+</center></p>
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: software | EVE Online Blog]]></title>
+  <link href="http://evestuff.github.com/evestuff/blog/categories/software/atom.xml" rel="self"/>
+  <link href="http://evestuff.github.com/evestuff/"/>
+  <updated>2013-06-06T14:15:56+04:00</updated>
+  <id>http://evestuff.github.com/evestuff/</id>
+  <author>
+    <name><![CDATA[Marko]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Руководство по установке Octopress для чайников]]></title>
+    <link href="http://evestuff.github.com/evestuff/software/2012/04/11/octopress-noob-guide/"/>
+    <updated>2012-04-11T22:48:00+04:00</updated>
+    <id>http://evestuff.github.com/evestuff/software/2012/04/11/octopress-noob-guide</id>
+    <content type="html"><![CDATA[<p>Руководство по установке и настройке блог-движка Octopress на Windows написанное чайником на своем горьком опыте.</p>
+
+<p>Итак, вы никогда не вели блог и решили завести такой же красивый и минималистичный, как у меня. Для того вам придется поработать с командной строкой и почитать мануалы на английском. А первые шаги я вам опишу.</p>
+
+<!-- more -->
+
+
+<h2>Подготовка</h2>
+
+<ol>
+<li>Сначала вам понадобится <code>Git</code>. Это такая система управления разными версиями файлов при совместном программировании.<br/>
+<a href="http://git-scm.com/">Установить Git</a><br/>
+Тут все просто, скачиваете с сайта, ставите. Я выбрал портативную версию.</li>
+<li>Далее необходима среда программирования <code>Ruby</code>, потому что Octopress написан на этом языке программирования. <a href="http://octopress.org/docs/setup">Сказано</a> что нам нужен <code>Ruby 1.9.2</code><br/>
+<a href="http://rubyinstaller.org/downloads/">Установить Ruby 1.9.2</a><br/>
+Скачиваете, ставите.</li>
+<li>Видимо, у программистов много версий <code>Ruby</code>, поэтому нужно отдельно выбрать, какую использовать. Для этого нужен выбиратель. Я использовал <a href="http://github.com/scottmuc/yari">Yari</a>. В нем ничего лишнего.<br/>
+Скачать <code>Yari</code>.<br/>
+Для того заходите в папку, где установлен <code>Git</code> и запускаете <code>git-cmd.bat</code>. Вводите эти команды одну за другой:</li>
+</ol>
+
+
+<p>.</p>
+
+<pre><code>cd %USERPROFILE%
+git clone git://github.com/scottmuc/yari.git .yari
+setx PATH %USERPROFILE%\.yari\bin
+</code></pre>
+
+<p>Перезапускаем консоль <code>git-cmd.bat</code>.</p>
+
+<pre><code>yari 1.9.2
+ruby -v
+</code></pre>
+
+<p>Если в ответ на последнюю команду вам пришло это:</p>
+
+<pre><code>ruby 1.9.2p290 (2011-07-09) [i386-mingw32]
+</code></pre>
+
+<p>значит все в порядке, вы готовы устанавливать Octopress.</p>
+
+<h2>Установка</h2>
+
+<p>Запускаете <code>git-cmd.bat</code><br/>
+Скачиваете Octopress.</p>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+</code></pre>
+
+<p>Переходите в папку с ним.</p>
+
+<pre><code>cd octopress
+</code></pre>
+
+<p>В дальнейшем все дела вы будете вести в этой папке. Если вы перезапустили <code>git-cmd.bat</code>, то для продолжения работы с Octopress вы сначала должны будете перейти в его папку.<br/>
+Ставите зависимости.</p>
+
+<pre><code>gem install bundler
+bundle install
+</code></pre>
+
+<p>Внимательно читайте ответные сообщения, если будут ошибки - дальше дело не пойдет, что бы вы ни писали.<br/>
+Ставим базовую тему оформления</p>
+
+<pre><code>rake install
+</code></pre>
+
+<p>Создаем тестовую страницу.</p>
+
+<pre><code>rake new_post["title"]
+</code></pre>
+
+<p>Генерируем наш сайт.</p>
+
+<pre><code>rake generate
+</code></pre>
+
+<p>Запускаем на локальном компьютере.</p>
+
+<pre><code>rake preview
+</code></pre>
+
+<p>Заходим в браузер и вводим в адресной строке</p>
+
+<pre><code>localhost:4000
+</code></pre>
+
+<p>Если вы все сделали правильно - вы увидите свой будущий блог с 1 сообщением.</p>
+
+<h2>Кириллица</h2>
+
+<p>Все русские буквы, которые вы будете вводить в файл <code>_config.yml</code>,<code>.html</code>-шаблоны и <code>markdown</code>-исходники ваших будущих постов должны быть в кодировке <code>UTF-8 без BOM</code>. Скажу сразу, обычный блокнот для этого не подойдет - его UTF-8 <em>c</em> ВОМ по умолчанию. Я пользуюсь <code>Notepad++</code>.</p>
+
+<p>Чтобы движок по командам <code>rake preview</code> и <code>rake generate</code> сгенерировал вам ваши русскоязычные страницы, вы должны сразу после запуска
+<code>git-cmd.bat</code> и перерехода <code>cd octopress</code> ввести следующую команду</p>
+
+<pre><code>chcp 65001
+</code></pre>
+
+<p>Без нее у вас с кириллицей ничего не заработает.</p>
+
+<h2>Кастомизация и перевод</h2>
+
+<p>Настройка и общее использование блога достаточно <a href="http://octopress.org/docs/">подробно описаны на его сайте</a>. Я обращу ваше внимание на основные моменты:</p>
+
+<h5>Настройка своей темы методом тыка</h5>
+
+<p>Запускаете <code>rake preview</code>, и все изменения в папках ниже сразу отразятся на вашей странице в локалхосте. Сделали бэкап оригинала, изменили файл в папке, сохранили. В консоли появилось сообщение:</p>
+
+<pre><code>[2012-04-14 13:06:58] regeneration: 1 files changed
+</code></pre>
+
+<p>Нажали <code>F5</code> в браузере, оценили результат.</p>
+
+<ul>
+<li><strong>/octopress/source/_posts</strong><br/>
+Тут лежат исходники ваших постов. Копируйте и вставляйте, создавая новые.</li>
+<li><strong>/octopress/source/_includes</strong><br/>
+Здесь лежат шаблоны ваших HTML-страниц. Вся возможная русификация проводится здесь. Помните про кодировки!</li>
+<li><strong>/octopress/sass</strong><br/>
+Тут все что касается цветов и шрифтов вашего блога. Цвета в <code>_сolors.scss</code> и <code>_theme.scss</code>, шрифты в <code>_fonts.scss</code> и <code>_typography.scss</code>. CSS файлы организованы логично, минимального знания английского хватит, чтобы разобраться. Цвета вашего блога можно подобрать <a href="http://colorscheme.ru/">на этом сайте</a>.</li>
+</ul>
+
+
+<h5>Замена оригинальной темы своей или создание новой</h5>
+
+<ul>
+<li><strong>/octopress/.themes/classic</strong><br/>
+Заменяете оригинальные файлы в исходной теме своими из <strong>/octopress/source/</strong> и <strong>/octopress/sass/</strong>. Теперь при <code>rake install</code> будет генерироваться сайт с вашей темой, вместо классической.</li>
+<li><strong>/octopress/.themes/new_theme</strong><br/>
+Cоздаете новую папку со своей темой. Вы должны понимать что делаете, иначе не факт что ваша тема будет сьедена движком.</li>
+</ul>
+
+
+<h2>Возникли вопросы?</h2>
+
+<ul>
+<li><a href="http://octopress.org/docs">Читайте документацию</a></li>
+<li><a href="http://github.com/imathis/octopress/issues">Ищите похожую проблему</a></li>
+<li>Напишите мне: <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#114;&#101;&#97;&#108;&#x74;&#121;&#116;&#101;&#x6d;&#x70;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x72;&#x65;&#97;&#x6c;&#x74;&#x79;&#116;&#101;&#109;&#x70;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
